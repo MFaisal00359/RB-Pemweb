@@ -12,38 +12,54 @@
         /* Desktop (default) */
         body {
             margin: 0;
+            padding: 0 20px 0 0;
             font-family: Arial, sans-serif;
-        }
-        header {
-            background-color: #333444;
-            color: white;
-            text-align: center;
-            padding: 10px;
         }
         nav {
             background-color: #f4f4f4;
-            width: 200px;
-            position: absolute;
-            top: 100px;
+            position: fixed;
+            top: 0;
             bottom: 0;
             left: 0;
-            padding: 10px;
+            width: 200px;
+            height: 100%;
+            padding: 100px 0 100px 0;
+            z-index: 10;
         }
         nav ul li {
-            display: flex;
-            gap: 24;
             list-style: none;
         }
-        nav ul li a {
-            text-decoration: none;
-            color: black;
-            width:100px;
+        nav ul li button {
+            width:120px;
+            height: 45px;
             padding: 10px;
             text-align: center;
-            height: 25px;
-            margin-bottom: 10px;
-            background-color: #dddddd;
+            text-decoration: none;
+            font-weight: bold;
+            margin-bottom: 16px;
+            border: none;
+            background-color: #333444;
+            color: white;
+            cursor: pointer;
+        }
+        nav ul li button:hover{
+            color: #333444;
+            background-color: white;
             border: 2px solid #333444;
+            box-shadow: 10px 10px #333444;
+        }
+        header {
+            margin-left: 220px;
+            padding: 20px 20px 0 20px;
+        }
+        header h1 {
+            background-color: #333444;
+            color: white;
+            margin: 0;
+            text-align: center;
+            line-height: 40px;
+            padding: 25px;
+            height: 40px;
         }
         main {
             margin-left: 220px;
@@ -62,35 +78,37 @@
             padding: 10px;
             margin-top: 20px;
         }
-
-        /* Flexbox */
         .flex-container {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
         }
         .block-item {
+            display: block;
             background-color: #dddddd;
             padding: 20px;
             width: 30%;
         }
-        /* spasi item */
         .block-item:nth-child(1){
             margin-right: 10px;
         }
         .block-item:nth-child(2){
             margin-right: 10px;
         }
+
         .inline-item {
             background-color: lightblue;
             padding: 10px;
-            display: inline-block;
+            display: inline;
         }
         
         /* Tablet */
         @media screen and (min-width: 601px) and (max-width: 992px) {
             nav {
                 width: 150px;
+            }
+            header {
+                margin-left: 160px;
             }
             main {
                 margin-left: 160px;
@@ -112,6 +130,9 @@
             nav ul li {
                 display: inline-block;                
             }
+            header {
+                margin-left: 0;
+            }
             main {
                 margin-left: 0;
             }
@@ -119,27 +140,31 @@
 
     </style>
 </head>
-<body>
 
+<body>
+    
+    <!-- LAYOUT 1: NAV (FIXED) -->
+    <nav>
+        <ul>
+            <li><a href="#"><button>Beranda</button></a></li>
+            <li><a href="#Profil"><button>Profil</button></a></li>
+            <li><a href="#Kontak"><button>Kontak</button></a></li>
+        </ul>
+    </nav>
+    
+    <!-- LAYOUT 2: HEADER -->
     <header>
         <h1>Desain Responsif Halaman</h1>
     </header>
 
-    <nav>
-        <ul>
-            <li><a href="#">Beranda ></a></li>
-            <li><a href="#">Profil ></a></li>
-            <li><a href="#">Kontak ></a></li>
-        </ul>
-    </nav>
-
+    <!-- LAYOUT 3: MAIN -->
     <main>
+        <p>Elemen block:</p>
         <div class="flex-container">
             <div class="block-item">Block Article 1</div>
             <div class="block-item">Block Article 2</div>
             <div class="block-item">Block Article 3</div>
         </div>
-        
         <p>Elemen inline:</p>
         <span class="inline-item">Inline Tag 1</span>
         <span class="inline-item">Inline Tag 2</span>
@@ -147,9 +172,9 @@
 
         <article>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda molestiae obcaecati aliquam, incidunt explicabo omnis adipisci error dicta ipsa vitae fuga modi illum ipsam amet dolore, et iure quasi nisi, architecto dolor odit eaque voluptates sapiente? Velit sequi excepturi ipsam, odit consequatur laudantium iste tempore eligendi aut officiis aliquam laborum quam explicabo! Iste voluptatum, quidem facere harum pariatur adipisci totam obcaecati beatae numquam quibusdam illo. Atque rerum in similique eos. Impedit perferendis nesciunt quisquam quaerat consequatur enim quis assumenda rem! Libero impedit odit obcaecati molestiae laudantium optio deserunt nostrum, dicta, ea vero incidunt asperiores, dignissimos alias vel ad quam repellat.
-            <br><hr><br>
+            <br id="Profil"><hr><br>
             <p>Nama: Muhammad Faisal Safira <br> NIM : 121140139 <br> Matakuliah : Pemograman Web RB</p>
-            <a href="https://github.com/MFaisal00359/RB-Pemweb/tree/main/task_3">github : https://github.com/MFaisal00359/RB-Pemweb/tree/main/task_3</a> 
+            <a href="https://github.com/MFaisal00359/RB-Pemweb/tree/main/task_3" id="Kontak">github : https://github.com/MFaisal00359/RB-Pemweb/tree/main/task_3</a> 
         </article>
 
         <footer>
