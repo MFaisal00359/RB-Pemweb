@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Keranjang Belanja Interaktif dengan Diskon</title>
+    <!-- 
+        Nama: Muhammd Faisal Safira
+        NIM: 121140139 
+    -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            margin: 40px auto;
+            padding: 40px;
+            background-color: #fff;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        h1 {
+            text-align: center;
+            color: #041104;
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #666;
+            font-size: 1.2em;
+            font-weight: normal;
+            margin-bottom: 40px;
+        }
+
+        h2 a {
+            display: inline-block;
+            color: dimgrey;
+            text-decoration: underline;
+        }
+
+        /* Keranjang Belanja */
+        .barang-barang-keranjang {
+            margin-bottom: 30px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        .barang-keranjang {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.3s;
+        }
+
+        .barang-keranjang:hover {
+            background-color: #f8f8f8;
+        }
+
+        .barang-keranjang img {
+            max-width: 80px;
+            border-radius: 10px;
+            margin-right: 20px;
+        }
+
+        .detail-barang-keranjang {
+            flex-grow: 1;
+            color: #333;
+        }
+
+        .detail-barang-keranjang h3 {
+            font-size: 1.2em;
+            margin-bottom: 8px;
+        }
+
+        .detail-barang-keranjang p {
+            color: #666;
+            font-size: 1em;
+        }
+
+        /* Tombol Hapus */
+        .aksi-barang-keranjang button {
+            background-color: #FF5722;
+            color: #fff;
+            border: none;
+            padding: 10px 16px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .aksi-barang-keranjang button:hover {
+            background-color: #E64A19;
+            transform: scale(1.1);
+        }
+
+        /* Bagian Total Harga */
+        .total {
+            text-align: right;
+            font-weight: bold;
+            font-size: 1em;
+            color: #4CAF50;
+            margin-top: 30px;
+        }
+
+        .total span {
+            color: #E64A19;
+        }
+
+        /* Input dan Tombol Tambah */
+        .tambah-ke-keranjang {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .tombol-tambah-ke-keranjang{
+            align-items: stretch;
+            margin-top: 30px;
+        }
+
+        .tombol-tambah-ke-keranjang button {
+            width: 100%;
+        }
+
+        .tambah-ke-keranjang input[type="text"],
+        .tambah-ke-keranjang input[type="number"] {
+            flex-grow: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        .tambah-ke-keranjang input[type="text"]:focus,
+        .tambah-ke-keranjang input[type="number"]:focus {
+            border-color: #4CAF50;
+            outline: none;
+            box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
+        }
+
+        .tombol-tambah-ke-keranjang button {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .tambah-ke-keranjang button:hover {
+            background-color: #388E3C;
+            transform: scale(1.05);
+        }
+
+        /* Responsif untuk layar kecil tipis-tipis aja*/
+        @media (max-width: 600px) {
+            .tambah-ke-keranjang {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .tambah-ke-keranjang input,
+            .tambah-ke-keranjang button {
+                width: 100%;
+                margin-bottom: 12px;
+            }
+
+            .detail-barang-keranjang {
+                text-align: center;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Keranjang Belanja Interaktif</h1>
+        <h2>By <a href="http://" target="_blank" rel="noopener noreferrer">Muhammd Faisal Safira</a></h2>
+            <div class="barang-barang-keranjang">
+        </div>
+        <div class="tambah-ke-keranjang">
+            <input type="text" placeholder="Nama Produk" id="nama-produk">
+            <input type="number" placeholder="Harga (Rp)" id="harga-produk">
+            <input type="number" placeholder="Jumlah" id="jumlah-produk" value="1" min="1">
+        </div>
+        <div class="tombol-tambah-ke-keranjang">
+            <button id="tombol-tambah-ke-keranjang" class="w-full">Tambah ke Keranjang</button>
+        </div>
+        <div class="total">
+            Total: Rp <span id="harga-total">0</span>
+            <span id="info-diskon"></span>
+        </div>
+    </div>
+
+    <script>
+
+        // Ini produk yang sudah ada (tanpa input)
+        const barangKeranjang = [{
+                id: 1,
+                nama: 'Produk 1',
+                harga: 109900,
+                jumlah: 2,
+                gambar: 'https://plus.unsplash.com/premium_photo-1672883551967-ab11316526b4?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+            },
+            {
+                id: 2,
+                nama: 'Produk 2',
+                harga: 159900,
+                jumlah: 1,
+                gambar: 'https://plus.unsplash.com/premium_photo-1672883551967-ab11316526b4?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+            },
+            {
+                id: 3,
+                nama: 'Produk 3',
+                harga: 89900,
+                jumlah: 3,
+                gambar: 'https://plus.unsplash.com/premium_photo-1672883551967-ab11316526b4?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+            }
+        ];
+
+        const kontainerBarangKeranjang = document.querySelector('.barang-barang-keranjang');
+        const elemenHargaTotal = document.getElementById('harga-total');
+        const elemenInfoDiskon = document.getElementById('info-diskon');
+        const tombolTambahKeKeranjang = document.getElementById('tombol-tambah-ke-keranjang');
+        const inputNamaProduk = document.getElementById('nama-produk');
+        const inputHargaProduk = document.getElementById('harga-produk');
+        const inputJumlahProduk = document.getElementById('jumlah-produk');
+
+        // Fungsi hitung diskon sesuai pada syarat
+        function hitungDiskon(hargaTotal, jumlahBarang) {
+            let diskon = 0;
+
+            // Untuk Diskon 10% dengan total di atas Rp 1.000.000
+            if (hargaTotal > 20000000) {
+                diskon = 0.15;
+            } 
+            // Else Diskon 15% untuk total di atas Rp 2.000.000
+            else if (hargaTotal > 10000000) {
+                diskon = 0.1;
+            }
+            
+            // Untuk diskon 5% lebih dari 5 barang
+            if (jumlahBarang > 5) {
+                diskon += 0.05;
+            }
+
+            return diskon;
+        }
+
+        // Fungsi menampilkan Barang ke Keranjang
+        function tampilkanBarangKeranjang() {
+            kontainerBarangKeranjang.innerHTML = '';
+
+            let hargaTotal = 0;
+            let jumlahBarang = 0;
+
+            barangKeranjang.forEach(barang => {
+                const elemenBarangKeranjang = document.createElement('div');
+                elemenBarangKeranjang.classList.add('barang-keranjang');
+
+                elemenBarangKeranjang.innerHTML = `
+                    <img src="${barang.gambar}" alt="${barang.nama}">
+                    <div class="detail-barang-keranjang">
+                        <h3>${barang.nama}</h3>
+                        <p>Harga: Rp ${barang.harga.toLocaleString()}</p>
+                        <p>Jumlah: ${barang.jumlah}</p>
+                    </div>
+                    <div class="aksi-barang-keranjang">
+                        <button class="tombol-hapus">Hapus</button>
+                    </div>
+                `;
+                
+                // Jdi ini akan appendChild(produk atau barang) dari ID produk dengan trigger listener click
+                const tombolHapus = elemenBarangKeranjang.querySelector('.tombol-hapus');
+                tombolHapus.addEventListener('click', () => hapusBarang(barang.id));
+
+                kontainerBarangKeranjang.appendChild(elemenBarangKeranjang);
+                
+                // Lalu untuk ini menghitung harga total
+                hargaTotal += barang.harga * barang.jumlah;
+                jumlahBarang += barang.jumlah;
+            });
+
+            const diskon = hitungDiskon(hargaTotal, jumlahBarang);
+            const hargaDiskon = hargaTotal * (1 - diskon);
+
+            elemenHargaTotal.textContent = hargaDiskon.toLocaleString();
+            if (diskon > 0) {
+                elemenInfoDiskon.textContent = `(${(diskon * 100).toFixed(0)}% diskon diterapkan)`;
+            } else {
+                elemenInfoDiskon.textContent = '';
+            }
+        }
+
+        // Ini fungsi buat hapus barang, pake artribut findIndex Buat nyari barang berdasarkan ID trus IF INDEX are same then splice barang
+        function hapusBarang(id) {
+            const index = barangKeranjang.findIndex(barang => barang.id === id);
+            if (index !== -1) {
+                barangKeranjang.splice(index, 1);
+                tampilkanBarangKeranjang();
+            }
+        }
+
+        // Ini fungsi tambah ke Keranjang 
+        function tambahKeKeranjang() {
+            const namaProduk = inputNamaProduk.value.trim();
+            const hargaProduk = parseFloat(inputHargaProduk.value);
+            const jumlahProduk = parseInt(inputJumlahProduk.value);
+
+            if (namaProduk && !isNaN(hargaProduk) && hargaProduk > 0 && jumlahProduk > 0) {
+                const barangBaru = {
+                    id: barangKeranjang.length + 1,
+                    nama: namaProduk,
+                    harga: hargaProduk,
+                    jumlah: jumlahProduk,
+                    gambar: 'https://plus.unsplash.com/premium_photo-1672883551967-ab11316526b4?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+                };
+
+                barangKeranjang.push(barangBaru);
+                tampilkanBarangKeranjang();
+
+                inputNamaProduk.value = '';
+                inputHargaProduk.value = '';
+                inputJumlahProduk.value = '1';
+            }
+        }
+
+        tombolTambahKeKeranjang.addEventListener('click', tambahKeKeranjang);
+
+        tampilkanBarangKeranjang();
+    </script>
+</body>
+
+</html>
