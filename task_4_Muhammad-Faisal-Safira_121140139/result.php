@@ -206,7 +206,6 @@ session_destroy();
             <h1>Hasil Form Pendaftaran</h1>
             <p>Terima kasih telah mengisi form pendaftaran</p>
         </header>
-
         <section class="card">
             <div class="card-header">
                 <h2>Informasi Pribadi</h2>
@@ -228,8 +227,6 @@ session_destroy();
                 </div>
             </div>
         </section>
-
-        <!-- Motivation Quote Card -->
         <section class="card">
             <div class="card-header">
                 <h2>Motivasi</h2>
@@ -240,8 +237,6 @@ session_destroy();
                 </div>
             </div>
         </section>
-
-        <!-- File Content Card -->
         <section class="card">
             <div class="card-header">
                 <h2>Konten File</h2>
