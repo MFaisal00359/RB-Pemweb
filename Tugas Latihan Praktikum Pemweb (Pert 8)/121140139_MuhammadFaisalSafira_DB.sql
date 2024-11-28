@@ -2,7 +2,6 @@
 CREATE DATABASE 121140139_MuhammadFaisalSafira_DB;
 USE valo_db;
 
--- Trus tabel valo_player
 CREATE TABLE valo_player (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nickname VARCHAR(100) NOT NULL,
@@ -11,7 +10,6 @@ CREATE TABLE valo_player (
     profil VARCHAR(255) NOT NULL
 );
 
--- Trus lu insert Data pemain Valorant yang gw kumpulin
 INSERT INTO valo_player (nickname, tim, dpi, profil) VALUES
 ('Tenz', 'Sentinels (retired)', 650, 'https://liquipedia.net/valorant/TenZ'),
 ('Aspas', 'MIBR', 800, 'https://liquipedia.net/valorant/Aspas'),
