@@ -3,7 +3,7 @@
 $host = '127.0.0.1';
 $username = 'root';
 $password = '';
-$database = '121140139_MuhammadFaisalSafira';
+$database = '121140139_MuhammadFaisalSafira_DB';
 $koneksi = new mysqli($host, $username, $password, $database);
 if ($koneksi->connect_error) {
     die("Koneksi gagal: " . $koneksi->connect_error);
