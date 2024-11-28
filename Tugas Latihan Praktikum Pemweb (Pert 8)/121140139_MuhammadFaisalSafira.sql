@@ -1,5 +1,5 @@
 -- Buat dulu database nya brok (nop or rof)
-CREATE DATABASE valo_db;
+CREATE DATABASE 121140139_MuhammadFaisalSafira;
 USE valo_db;
 
 -- Trus tabel valo_player
