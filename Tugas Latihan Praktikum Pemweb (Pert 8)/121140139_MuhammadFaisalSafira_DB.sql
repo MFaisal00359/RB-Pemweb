@@ -1,6 +1,6 @@
 -- Buat dulu database nya brok (nop or rof)
 CREATE DATABASE 121140139_MuhammadFaisalSafira_DB;
-USE valo_db;
+USE 121140139_MuhammadFaisalSafira_DB;
 
 CREATE TABLE valo_player (
     id INT AUTO_INCREMENT PRIMARY KEY,
